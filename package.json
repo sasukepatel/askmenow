@@ -1,0 +1,26 @@
+{
+  "name": "askmenow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sasukepatel/askmenow.git"
+  },
+  "author": "sasukepatel",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sasukepatel/askmenow/issues"
+  },
+  "homepage": "https://github.com/sasukepatel/askmenow#readme",
+  "dependencies": {
+    "apiai": "^4.0.0",
+    "body-parser": "^1.16.1",
+    "cors": "^2.8.1",
+    "express": "^4.14.1",
+    "request": "^2.79.0"
+  }
+}
