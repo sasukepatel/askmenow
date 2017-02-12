@@ -42,7 +42,7 @@ function sendMsg(convId,msg,callback){
 }
 
 function snWebhook(aiObj,callback){
-     request.post(instanceUrl+'/api/9187/v1/bot_webhook_api_ai/apiai', {
+     request.post(instanceUrl+'/api/infte/v1/bot_webhook_api_ai/apiai', {
  'auth': auth,
  'body':aiObj,
  'json':true
