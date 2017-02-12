@@ -4,7 +4,7 @@ var bodyParser  = require("body-parser");
 
 //import apiai library
 var apiai = require('apiai');
-var apiapp = apiai("0643dbf8dfb94a69ac438d95609717a8");
+var apiapp = apiai(process.env.apiAiClientId);
 var cors = require('cors')
 //import servicenowapi file
 var snapi = require("./servicenowapi.js");

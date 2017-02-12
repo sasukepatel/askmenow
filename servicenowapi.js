@@ -1,8 +1,8 @@
 var request = require("request");
 
 //var snowtoken = "BPIeIToVPQen2e49HZqrE4dyFW9yMCTjOPoVqKWsgch-WnJZN59FmWYgu8Ii9sH77Zb2me1bsyTBpTvoMo5kvg";
-var userid = 'askmenowbot';
-var password = "Bot90338";
+var userid = process.env.serviceNowUserId;
+var password = process.env.serviceNowUserPass;
 
 var auth = {
     'user': userid,
@@ -10,8 +10,9 @@ var auth = {
     'sendImmediately': false
   }
 
-var queueid = "4c80e996db14b200f485773ebf961925";
-var acceptURL = "https://dev23858.service-now.com/api/now/connect/support/queues/"+queueid+"/accept";
+var queueid = process.env.chatQueueId;
+var instanceUrl = process.env.serviceNowInstance;
+var acceptURL = instanceUrl+"/api/now/connect/support/queues/"+queueid+"/accept";
 
 //*******Aceept chat**********
 function acceptChat(callback){
@@ -21,19 +22,19 @@ function acceptChat(callback){
 
 }
 function getMsg(convId,callback){
-    request.get('https://dev23858.service-now.com/api/now/connect/conversations/'+convId+'/messages', {
+    request.get(instanceUrl+'/api/now/connect/conversations/'+convId+'/messages', {
  'auth': auth
 },callback);
 }
 //*********Get Queues********
 function getQueues(callback){
-request.get('https://dev23858.service-now.com/api/now/connect/support/queues', {
+request.get(instanceUrl+'/api/now/connect/support/queues', {
  'auth': auth
 },callback);
 }
 
 function sendMsg(convId,msg,callback){
-    request.post('https://dev23858.service-now.com/api/now/connect/conversations/'+convId+'/messages', {
+    request.post(instanceUrl+'/api/now/connect/conversations/'+convId+'/messages', {
  'auth': auth,
  'body':msg,
  'json':true
@@ -41,7 +42,7 @@ function sendMsg(convId,msg,callback){
 }
 
 function snWebhook(aiObj,callback){
-     request.post('https://dev23858.service-now.com/api/9187/v1/bot_webhook_api_ai/apiai', {
+     request.post(instanceUrl+'/api/9187/v1/bot_webhook_api_ai/apiai', {
  'auth': auth,
  'body':aiObj,
  'json':true
@@ -50,7 +51,7 @@ function snWebhook(aiObj,callback){
 
 function closeOldChats(oldChats){
     oldChats.forEach(function(chat){
-         request.post('https://dev23858.service-now.com/api/now/connect/support/sessions/'+chat+'/close', {
+         request.post(instanceUrl+'/api/now/connect/support/sessions/'+chat+'/close', {
  'auth': auth
 });
     })
